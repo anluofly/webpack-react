@@ -1,8 +1,0 @@
-{
-    "presets": [ // 代表babel支持的语法
-        // ["es2015", { "loose": true }],
-        // "react" // 代表可以编译react  https://segmentfault.com/a/1190000016458913
-        // 以上配置需要安装npm i babel-preset-es2015 babel-preset-es2015-loose babel-preset-react -D 改为 npm i @babel/preset-es2015 @babel/preset-es2015-loose @babel/preset-react
-        "@babel/preset-env", "@babel/preset-react"
-    ]
-}
