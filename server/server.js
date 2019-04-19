@@ -9,6 +9,7 @@ const template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'ut
 const app = express()
 
 app.use('/public', express.static(path.join(__dirname, '../dist')))
+
 app.get('*', function(req, res) {
     const appString = ReactSSR.renderToString(serverEntry)
     res.send(template.replace('<app></app>', appString))
