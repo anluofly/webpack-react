@@ -15,6 +15,14 @@ module.exports = {
     module: {
         rules: [
             {
+                enforce: 'pre', // 代码编译之前，检测
+                test: /.(js|jsx)$/,
+                loader: 'eslint-loader',
+                exclude: [
+                    path.resolve(__dirname, '../node_modules') // 不检测的文件
+                ]
+            },
+            {
                 test: /.jsx$/,
                 loader: 'babel-loader'
             },

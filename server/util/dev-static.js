@@ -1,7 +1,11 @@
 const axios = require('axios') // yarn add axios -S
 const webpack = require('webpack')
+const path = require('path')
 // yarn add memory-fs -D 只写入内存 不写入硬盘
 const MemoryFs = require('memory-fs')
+
+const proxy = require('http-proxy-middleware') // yarn add http-proxy-middleware -D
+
 
 const serverConfig = require('../../build/webpack.config.server')
 
@@ -25,15 +29,15 @@ let serverBundle
 serverCompiler.watch({}, (err, stats) => {
     if (err) throw err
     stats = stats.toJson()
-    stats.errors.forEash(err => console.error(err)) 
-    stats.warnings.forEash(warn => console.warn(warn))
+    stats.errors.forEach(err => console.error(err)) 
+    stats.warnings.forEach(warn => console.warn(warn))
 
     const bundlePath = path.join(
         serverConfig.output.path,
         serverConfig.output.filename,
     )
     
-    const bundle = mfs.readFileSync(bundlePath)
+    const bundle = mfs.readFileSync(bundlePath, 'utf-8')
     const m = new Module()
     m._compile(bundle, 'server-entry.js')
     serverBundle = m.exports.default
@@ -45,6 +49,9 @@ module.exports = function(app) {
         target: 'http://localhost:8888'
     }))
     app.get('*', function(req, res) {
-
+        getTemplate().then(template => {
+            const content = ReactDOM.renderToString(serverBundle)
+            res.send(template.replace('<!-- app -->'), content)
+        })
     })
 }
