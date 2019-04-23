@@ -1,15 +1,12 @@
 {
-    // "presets": [ // 代表babel支持的语法
-    //     // ["es2015", { "loose": true }],
-    //     // "react" // 代表可以编译react  https://segmentfault.com/a/1190000016458913
-    //     // 以上配置需要安装npm i babel-preset-es2015 babel-preset-es2015-loose babel-preset-react -D 改为 npm i @babel/preset-es2015 @babel/preset-es2015-loose @babel/preset-react
-    //     "@babel/preset-env",
-    //     "@babel/preset-react",
-    //     "stage-1"
-    // ],
     "presets": ["@babel/react", "@babel/env"],
     "plugins": [
-        "transform-decorators-legacy", // 必须使用在第一项
-        "react-hot-loader/babel" // yarn add react-hot-loader@next -D
+        [
+          "@babel/plugin-proposal-decorators",
+          { "legacy": true }
+        ],
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        "@babel/plugin-transform-runtime",
+        "react-hot-loader/babel", // yarn add react-hot-loader@next -D
     ]
 }
