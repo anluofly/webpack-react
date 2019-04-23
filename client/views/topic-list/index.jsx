@@ -14,10 +14,12 @@ class TopicList extends React.Component {
     // do something here
   }
 
-  // changName = (event) => {
-  //   // this.props.appState.name = event.target.value // 不推荐使用 不规范
-  //   this.props.AppState.changName(event.target.value)
-  // }
+  changName = (event) => {
+    // this.props.appState.name = event.target.value // 不推荐使用 不规范
+    const { appState } = this.props
+    appState.changName(event.target.value)
+  }
+
   render() {
     const { appState } = this.props
     return (
