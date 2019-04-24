@@ -30,3 +30,14 @@
 //     "stage-1"
 // ],
 ```
+
+# CNode API代理实现 https://cnodejs.org/api
+* yarn add body-parser express-session query-string -S
+  * body-parser 转化请求body，json格式
+  * express-session 存放服务端的session
+  * query-string 请求路径 ?之后的参数 转化为json
+
+# http://chromecj.com/downloadstart.html#1373
+# postman 验证接口http://localhost:3333/api/topics
+
+

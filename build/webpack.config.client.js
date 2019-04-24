@@ -67,6 +67,9 @@ if (isDev) {
     publicPath: '/public/', // 配置访问静态文件的路径
     historyApiFallback: {
       index: '/public/index.html'
+    },
+    proxy: {
+      '/api': 'http://localhost:3333' // 客户端代理服务器端
     }
   }
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
